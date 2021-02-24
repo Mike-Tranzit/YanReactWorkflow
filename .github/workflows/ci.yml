@@ -11,10 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2 # клонируем наш репозиторий
       - name: Cache node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v1 # кеширует зависимости в Git в следующий раз npm i будет пропускаться потому что все зависимости закешированы
         with:
           path: ~/.npm
-          key: ${{ runner.os }}node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}node-${{hashFiles('**/package-lock.json')}} # Если поменялся package-lock.json знаит поменялись зависимости закешируй снова
           restore-keys: |
             ${{ runner.os }}node-
       - name: Use NodeJS
@@ -26,9 +26,21 @@ jobs:
       - run: npm test -- --coverage
         env:
           CI: true
+      - name: Upload test coverage
+        uses: actions/upload-artifact@v1 # помогает создать скачиваемые файлы
+        with:
+          name: code-coverage
+          path: coverage
       - name: Build project
         if: github.event_name  == 'push'
         run: npm run build
+      - name: Upload build
+        if: github.event_name  == 'push'
+        uses: actions/upload-artifact@v1
+        with:
+          name: build
+          path: build
+      # - uses: actions/download-artifact # помогает скачивать скачиваемые файлы
       - run: npm install -g surge
       - name: Deploy to Staging
         if: github.event_name == 'push'
