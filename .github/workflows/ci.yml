@@ -37,9 +37,9 @@ jobs:
       - name: Upload build
         if: github.event_name  == 'push'
         uses: actions/upload-artifact@v1
-          with:
-            name: build
-            path: build
+        with:
+          name: build
+          path: build
       # - uses: actions/download-artifact # помогает скачивать скачиваемые файлы
       - run: npm install -g surge
       - name: Deploy to Staging
