@@ -9,12 +9,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2 # клонируем наш репозиторий
+      - uses: actions/checkout@v2 # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
       - name: Cache node_modules
-        uses: actions/cache@v1 # кеширует зависимости в Git в следующий раз npm i будет пропускаться потому что все зависимости закешированы
+        uses: actions/cache@v1 # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Git пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ npm i пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         with:
           path: ~/.npm
-          key: ${{ runner.os }}node-${{hashFiles('**/package-lock.json')}} # Если поменялся package-lock.json знаит поменялись зависимости закешируй снова
+          key: ${{ runner.os }}node-${{hashFiles('**/package-lock.json')}} # пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ package-lock.json пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
           restore-keys: |
             ${{ runner.os }}node-
       - name: Use NodeJS
@@ -27,7 +27,7 @@ jobs:
         env:
           CI: true
       - name: Upload test coverage
-        uses: actions/upload-artifact@v1 # помогает создать скачиваемые файлы
+        uses: actions/upload-artifact@v1 # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         with:
           name: code-coverage
           path: coverage
@@ -40,7 +40,7 @@ jobs:
         with:
           name: build
           path: build
-      # - uses: actions/download-artifact # помогает скачивать скачиваемые файлы
+      # - uses: actions/download-artifact # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
       - run: npm install -g surge
       - name: Create a release
         if: github.event_name  == 'push' && github.ref == 'refs/heads/main'
