@@ -1,10 +1,10 @@
 module.exports = {
-    branches: "master",
+    branches: "main",
     repositoryUrl: "https://github.com/Mike-Tranzit/YanReactWorkflow",
     plugins: [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
         "@semantic-release/npm",
-        "@semantic-release/gitlab"
+        "@semantic-release/github"
     ]
 }
